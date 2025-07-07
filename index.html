@@ -735,26 +735,27 @@
             // Check current state
             const isOpen = content.classList.contains('open');
 
-            // Close all other open sections
-            document.querySelectorAll('.section-content.open').forEach(openContent => {
-                // Ensure we don't close the current section if it's already open and being toggled off
-                if (openContent.id !== id) {
-                    openContent.classList.remove('open');
-                    const openHeader = openContent.previousElementSibling;
-                    openHeader.querySelector('.arrow').classList.remove('rotate');
-                    openHeader.setAttribute('aria-expanded', 'false');
-                }
-            });
-
             // Toggle the clicked section
             if (isOpen) {
-                content.classList.add('open');
-                arrow.classList.add('rotate');
-                header.setAttribute('aria-expanded', 'true');
-            } else {
                 content.classList.remove('open');
                 arrow.classList.remove('rotate');
                 header.setAttribute('aria-expanded', 'false');
+            } else {
+                // Close all other open sections before opening the new one
+                document.querySelectorAll('.section-content.open').forEach(openContent => {
+                    if (openContent.id !== id) { // Ensure we don't try to close the same section if it's already open
+                        openContent.classList.remove('open');
+                        const openHeader = openContent.previousElementSibling;
+                        if (openHeader) { // Safety check
+                            openHeader.querySelector('.arrow').classList.remove('rotate');
+                            openHeader.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+
+                content.classList.add('open');
+                arrow.classList.add('rotate');
+                header.setAttribute('aria-expanded', 'true');
             }
         }
 
