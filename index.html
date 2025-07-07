@@ -7,10 +7,13 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(to right top, #6EE7B7, #3B82F6, #9333EA); /* Vibrant gradient background */
+            /* Softer, more professional gradient background */
+            background: linear-gradient(to right top, #A7F3D0, #67E8F9, #C4B5FD); /* Teal-Cyan-Purple blend */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -20,24 +23,26 @@
         .container {
             max-width: 1000px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            background-color: rgba(255, 255, 255, 0.98); /* Less transparent white */
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); /* Stronger, softer shadow */
             padding: 2.5rem;
             margin-top: 2rem; /* Add some margin from the top */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle border for depth */
         }
         h1, h2, h3, h4 {
-            color: #1A202C; /* Darker text for headings */
+            color: #1F2937; /* Darker gray for headings */
             font-weight: 700;
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem; /* Slightly larger */
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #0056b3; /* Primary blue for main title */
+            color: #10B981; /* Vibrant green for main title */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .section-header {
-            background-color: #E0F2FE; /* Light blue background for headers */
+            background-color: #ECFDF5; /* Lighter green background for headers */
             padding: 1rem 1.5rem;
             border-radius: 12px;
             margin-bottom: 1rem;
@@ -45,35 +50,40 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            border: 1px solid #D1FAE5;
         }
         .section-header:hover {
-            background-color: #BFDBFE; /* Slightly darker on hover */
-            transform: translateY(-2px);
+            background-color: #D1FAE5; /* Slightly darker on hover */
+            transform: translateY(-3px); /* More pronounced lift */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         .section-header h2 {
-            font-size: 1.75rem;
-            color: #1D4ED8; /* Darker blue for section titles */
+            font-size: 1.9rem; /* Slightly larger */
+            color: #047857; /* Darker green for section titles */
             margin: 0;
         }
         .section-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+            transition: max-height 0.8s ease-in-out, padding 0.8s ease-in-out, background-color 0.3s ease;
             padding: 0 1.5rem;
-            background-color: #F8FAFC; /* Off-white for content background */
+            background-color: #F9FAFB; /* Off-white for content background */
             border-radius: 12px;
             margin-bottom: 1.5rem;
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
         }
         .section-content.open {
-            max-height: 2000px; /* Arbitrarily large value to allow content to expand */
+            max-height: 2500px; /* Arbitrarily large value to allow content to expand */
             padding: 1.5rem;
+            background-color: #FFFFFF; /* Pure white when open for clarity */
         }
         .section-content p, .section-content ul, .section-content ol {
             margin-bottom: 1rem;
-            color: #4A5568; /* Grayish text */
+            color: #4B5563; /* Slightly darker gray text */
+            line-height: 1.6; /* Improved line spacing */
         }
         .section-content ul {
             list-style-type: disc;
@@ -84,23 +94,28 @@
             margin-left: 1.5rem;
         }
         .arrow {
-            font-size: 1.5rem;
+            font-size: 1.8rem; /* Larger arrow */
             transition: transform 0.3s ease;
+            color: #047857; /* Green arrow */
         }
         .arrow.rotate {
             transform: rotate(180deg);
         }
         .info-card {
-            background-color: #EBF8FF; /* Lightest blue for info cards */
-            border-left: 5px solid #3B82F6; /* Blue border */
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            background-color: #F0F9FF; /* Lightest blue for info cards */
+            border-left: 6px solid #22D3EE; /* Cyan border */
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: #1E40AF; /* Darker blue text for info cards */
+        }
+        .info-card .font-bold {
+            color: #0E7490; /* Even darker cyan for bold text */
         }
         .image-placeholder {
-            background-color: #CBD5E0; /* Light gray for image placeholders */
+            background-color: #E2E8F0; /* Light gray for image placeholders */
             color: #4A5568;
             padding: 2rem;
             border-radius: 10px;
@@ -112,140 +127,323 @@
             align-items: center;
             justify-content: center;
             min-height: 200px;
+            border: 1px dashed #94A3B8; /* Dashed border for placeholder */
         }
+        /* --- Timeline Specific Styles --- */
         .timeline {
             position: relative;
-            padding: 20px 0;
-            margin: 2rem 0;
+            padding: 80px 0; /* Sufficient vertical padding for date and content */
+            margin: 2rem 0 4rem 0;
+            display: flex;
+            overflow-x: auto; /* Enables horizontal scrolling */
+            align-items: flex-start;
+            padding-bottom: 15px; /* For scrollbar visibility */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: thin; /* Firefox scrollbar */
+            scrollbar-color: #67E8F9 #ECFDF5; /* Firefox scrollbar colors */
+            min-height: 280px; /* Ensure enough height */
+            white-space: nowrap; /* Forces all timeline-items to stay on one line */
         }
+
+        /* Custom scrollbar for Webkit browsers */
+        .timeline::-webkit-scrollbar {
+            height: 10px;
+        }
+        .timeline::-webkit-scrollbar-track {
+            background: #ECFDF5;
+            border-radius: 10px;
+        }
+        .timeline::-webkit-scrollbar-thumb {
+            background: #67E8F9;
+            border-radius: 10px;
+            border: 2px solid #ECFDF5;
+        }
+
+        /* The horizontal line that spans the entire scrollable width */
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background-color: #93C5FD; /* Light blue line */
-            transform: translateX(-50%);
+            left: 0;
+            right: 0; /* Let it span the full width of the scrollable content */
+            top: 50%; /* Center vertically within the timeline container */
+            height: 4px;
+            background-color: #A7F3D0;
+            transform: translateY(-50%);
+            z-index: 0;
         }
+
         .timeline-item {
+            flex-shrink: 0; /* Prevents items from shrinking */
+            width: 300px; /* Fixed width for each item */
+            margin: 0 20px; /* Space between items */
+            position: relative; /* For absolute positioning of date and point */
+            text-align: center;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 0;
+            padding-bottom: 0;
+            min-height: 250px; /* Ensure enough space for content and date */
         }
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-        .timeline-item-content {
-            width: 45%;
-            background-color: #fff;
-            padding: 1.25rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            border: 1px solid #E2E8F0;
-        }
-        .timeline-item:nth-child(even) .timeline-item-content::before {
-            content: '';
-            position: absolute;
-            right: -10px;
-            top: 20px;
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 10px solid #fff;
-        }
-        .timeline-item:nth-child(odd) .timeline-item-content::before {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 20px;
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-right: 10px solid #fff;
-        }
+
+        /* The green dot on the timeline */
         .timeline-item-point {
-            width: 20px;
-            height: 20px;
-            background-color: #3B82F6; /* Blue dot */
+            width: 24px;
+            height: 24px;
+            background-color: #10B981;
             border-radius: 50%;
             position: absolute;
+            top: 50%; /* Center relative to timeline-item's vertical space */
             left: 50%;
-            top: 20px;
-            transform: translateX(-50%);
-            z-index: 1;
-            border: 3px solid #fff;
+            transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+            z-index: 10; /* Ensure it's above content and line */
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 2px #10B981;
         }
+
+        /* The date text above the line */
         .timeline-date {
-            font-weight: 600;
-            color: #1D4ED8;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #047857;
+            font-size: 1.1rem;
+            position: absolute;
+            /* Position date above the point and line, with extra space */
+            bottom: calc(50% + 12px + 20px); /* 50% of item height + half point height + desired space */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Prevent date from wrapping */
+            z-index: 11; /* Ensure date is above point */
+        }
+
+        /* The content box below the line */
+        .timeline-item-content {
+            width: 100%;
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            border: 1px solid #E2E8F0;
+            white-space: normal; /* Allow text inside content to wrap */
+            /* Position content below the point and line, with extra space */
+            margin-top: calc(50% + 12px + 20px); /* 50% of item height + half point height + desired space */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: left;
+            z-index: 5; /* Below point, above line */
         }
         .math-eq {
             background-color: #F0F9FF; /* Very light blue for equations */
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 1.5rem; /* More padding */
+            border-radius: 10px; /* More rounded */
             margin: 1.5rem 0;
             text-align: center;
             font-family: 'Times New Roman', serif; /* Classic font for math */
             font-size: 1.1rem;
             overflow-x: auto; /* Allow horizontal scrolling for long equations */
+            border: 1px solid #BFDBFE;
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
         }
-        /* Responsive adjustments */
+        /* Responsive adjustments for mobile (vertical timeline) */
         @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem;
-                margin-top: 1rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            .section-header h2 {
-                font-size: 1.5rem;
+            .timeline {
+                display: block; /* Revert to block for vertical layout */
+                overflow-x: visible; /* No horizontal scroll on mobile */
+                padding: 20px 0; /* Smaller vertical padding for mobile */
+                white-space: normal; /* Allow items to wrap vertically */
             }
             .timeline::before {
                 left: 20px;
+                width: 4px; /* Back to vertical line width */
+                top: 0;
+                bottom: 0;
+                height: auto; /* Span full height */
+                transform: translateX(-50%);
             }
             .timeline-item {
-                flex-direction: column !important;
-                align-items: flex-start;
-            }
-            .timeline-item-content {
-                width: calc(100% - 40px); /* Adjust width for mobile */
-                margin-left: 40px; /* Make space for the line */
-            }
-            .timeline-item-content::before {
-                left: -10px !important;
-                right: auto !important;
-                border-left: none !important;
-                border-right: 10px solid #fff !important;
+                width: 100%;
+                margin: 0;
+                margin-bottom: 30px;
+                align-items: flex-start; /* Align content to left for mobile */
+                min-height: auto; /* Allow height to adjust to content */
             }
             .timeline-item-point {
                 left: 20px;
-                transform: translateX(-50%);
+                top: 20px; /* Position relative to timeline-item's top for mobile */
+                transform: translate(-50%, 0); /* Only horizontal transform */
             }
+            .timeline-date {
+                position: static; /* Remove absolute positioning */
+                transform: none;
+                margin-bottom: 0.5rem; /* Add some space below date */
+                text-align: left; /* Align date to left */
+                margin-left: 40px; /* Indent date */
+            }
+            .timeline-item-content {
+                width: calc(100% - 40px); /* Adjust width */
+                margin-left: 40px; /* Indent content */
+                margin-top: 0; /* Remove top margin for mobile, let date/content flow naturally */
+                text-align: left;
+            }
+            .timeline-item-content::before {
+                content: '';
+                position: absolute;
+                left: -10px; /* Position for the triangle */
+                top: 20px;
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-right: 10px solid #fff;
+                z-index: 1; /* Ensure triangle is above line */
+            }
+        }
+
+        /* Styles for the interactive diagram */
+        .interactive-diagram-container {
+            position: relative;
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: #f8fafc;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+        }
+
+        .interactive-diagram-container svg rect {
+            cursor: pointer;
+            transition: fill 0.3s ease, stroke 0.3s ease, transform 0.2s ease;
+        }
+
+        .interactive-diagram-container svg rect:hover {
+            transform: scale(1.02);
+            stroke-width: 3;
+            filter: brightness(1.1);
+        }
+
+        .info-panel {
+            position: fixed; /* Use fixed for modal-like behavior */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-panel h3 {
+            font-size: 1.8rem;
+            color: #047857;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .info-panel p {
+            color: #4B5563;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-button, .close-button, .option-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-align: center;
+            border: none;
+        }
+
+        .challenge-button {
+            background-color: #3B82F6; /* Blue */
+            color: white;
+        }
+        .challenge-button:hover {
+            background-color: #2563EB;
+            transform: translateY(-1px);
+        }
+
+        .close-button {
+            background-color: #EF4444; /* Red */
+            color: white;
+        }
+        .close-button:hover {
+            background-color: #DC2626;
+            transform: translateY(-1px);
+        }
+
+        .option-button {
+            background-color: #E0F2FE; /* Light blue */
+            color: #1D4ED8;
+            border: 1px solid #BFDBFE;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        .option-button:hover:not(:disabled) {
+            background-color: #BFDBFE;
+        }
+        .option-button.correct {
+            background-color: #10B981; /* Green */
+            color: white;
+        }
+        .option-button.incorrect {
+            background-color: #EF4444; /* Red */
+            color: white;
+        }
+        .option-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .quiz-area {
+            display: none; /* Hidden by default */
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .quiz-area p {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1F2937;
+        }
+
+        .feedback-message {
+            margin-top: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .feedback-message.correct {
+            color: #047857;
+        }
+        .feedback-message.incorrect {
+            color: #DC2626;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="text-blue-700">Nirmund White Paper - Web3 Level 0</h1>
+        <h1 class="text-green-600">Nirmund White Paper - Web3 Level 0</h1>
         <p class="text-center text-gray-600 italic mb-6">Decentralized Action &amp; Governance for Growth, Centralized Regulation &amp; Supervision for Stability</p>
         <p class="text-center text-gray-500 text-sm mb-8">By Anup Pai. Twitter <a href="https://twitter.com/paianup" target="_blank" class="text-blue-500 hover:underline">@paianup</a></p>
 
         <!-- Section 1: OVERVIEW -->
         <div class="section">
-            <div class="section-header" onclick="toggleSection('overview')">
+            <div class="section-header" id="header-overview" role="button" aria-expanded="false" aria-controls="overview" onclick="toggleSection('overview')">
                 <h2>1. OVERVIEW</h2>
                 <span class="arrow">&#9660;</span>
             </div>
             <div class="section-content" id="overview">
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">1.1 Reference</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">1.1 Reference: Foundations and Purpose</h3>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li>References the <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" class="text-blue-500 hover:underline">Bitcoin white paper by Satoshi Nakamoto</a>, which proposed a solution for internet commerce without a trusted third party.</li>
                     <li>Proposes a computer system trusted by both buyer and seller as an alternative.</li>
@@ -253,7 +451,7 @@
                     <li>This White Paper addresses the need for individuals to maintain personal ledgers separate from those shared with the Government.</li>
                 </ul>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">1.2 Prologue: The Dance of Centralization & Decentralization</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">1.2 Prologue: Centralization, Decentralization, and Perpetual Capital</h3>
                 <div class="image-placeholder">
                     <!-- SVG of Yin-Yang symbol -->
                     <svg width="100" height="100" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-4">
@@ -271,17 +469,72 @@
                     <li>Post-COVID, the Gig economy's growth and lifted location constraints accelerated decentralization trends.</li>
                 </ul>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">1.3 Web3 Level 0 - A New Financial Structure</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">1.3 Web3 Level 0: A New Financial Structure</h3>
                 <p class="text-gray-700 mb-4">Web3 Level 0 proposes a new structure within each nation, integrating traditional finance with decentralized digital economies:</p>
-                <div class="image-placeholder">
-                    <p class="text-lg font-semibold mb-2">Conceptual Diagram: Web3 Level 0 Ecosystem</p>
-                    <p class="text-sm">
-                        <span class="font-bold">White Listed Web3 Wallets</span> connect to:<br>
-                        <span class="font-bold">Community Regulated Financial Institutions (Web3 Level 0)</span> which interact with <span class="font-bold">Federal Regulated Financial Institutions</span> and <span class="font-bold">Central Banks</span>.<br>
-                        The <span class="font-bold">Distributed Digital Economy</span> (Network of Companies & Societies) trades bilaterally, also connecting to Wallets.
-                    </p>
-                    <p class="text-xs mt-2 text-gray-500"><i>(This is a conceptual representation. An actual interactive diagram would allow exploring connections.)</i></p>
+                <div class="interactive-diagram-container">
+                    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" class="w-full h-auto">
+                        <defs>
+                            <marker id="arrowhead-new" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#06B6D4" />
+                            </marker>
+                        </defs>
+
+                        <!-- Nodes -->
+                        <rect id="whiteListedWallets" x="50" y="150" width="150" height="80" rx="10" fill="#E0F7FA" stroke="#06B6D4" stroke-width="2"/>
+                        <text x="125" y="190" font-size="14" font-weight="bold" fill="#0E7490" text-anchor="middle" pointer-events="none">White Listed</text>
+                        <text x="125" y="210" font-size="14" font-weight="bold" fill="#0E7490" text-anchor="middle" pointer-events="none">Web3 Wallets</text>
+
+                        <rect id="communityFIs" x="250" y="100" width="200" height="100" rx="10" fill="#E0F2FE" stroke="#3B82F6" stroke-width="2"/>
+                        <text x="350" y="135" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="middle" pointer-events="none">Community Regulated</text>
+                        <text x="350" y="155" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="middle" pointer-events="none">Financial Institutions</text>
+                        <text x="350" y="175" font-size="12" fill="#1D4ED8" text-anchor="middle" pointer-events="none">(Web3 Level 0)</text>
+
+                        <rect id="federalFIs" x="500" y="50" width="200" height="60" rx="10" fill="#DBEAFE" stroke="#60A5FA" stroke-width="2"/>
+                        <text x="600" y="85" font-size="14" font-weight="bold" fill="#2563EB" text-anchor="middle" pointer-events="none">Federal Regulated</text>
+                        <text x="600" y="105" font-size="14" font-weight="bold" fill="#2563EB" text-anchor="middle" pointer-events="none">Financial Institutions</text>
+
+                        <rect id="centralBank1" x="500" y="150" width="100" height="60" rx="10" fill="#BFDBFE" stroke="#3B82F6" stroke-width="2"/>
+                        <text x="550" y="185" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="middle" pointer-events="none">Central Bank 1</text>
+
+                        <rect id="centralBankN" x="650" y="150" width="100" height="60" rx="10" fill="#BFDBFE" stroke="#3B82F6" stroke-width="2"/>
+                        <text x="700" y="185" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="middle" pointer-events="none">Central Bank n</text>
+
+                        <rect id="distributedEconomy" x="250" y="250" width="450" height="80" rx="10" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2"/>
+                        <text x="475" y="280" font-size="14" font-weight="bold" fill="#6D28D9" text-anchor="middle" pointer-events="none">Distributed Digital Economy</text>
+                        <text x="475" y="300" font-size="12" fill="#6D28D9" text-anchor="middle" pointer-events="none">- Network of Companies & Societies trading bilaterally</text>
+
+                        <!-- Connections -->
+                        <line x1="200" y1="190" x2="250" y2="150" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="200" y1="190" x2="250" y2="170" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="350" y1="100" x2="550" y2="80" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="550" y1="80" x2="350" y2="100" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="350" y1="200" x2="500" y2="180" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="125" y1="230" x2="250" y2="280" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="250" y1="280" x2="125" y2="230" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="475" y1="250" x2="350" y2="200" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="350" y1="200" x2="475" y2="250" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="600" y1="110" x2="550" y2="150" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                    </svg>
+                    <p class="text-xs mt-2 text-gray-500 text-center"><i>Click on any box to learn more and test your understanding!</i></p>
                 </div>
+
+                <!-- Info Panel / Modal -->
+                <div id="infoPanel" class="info-panel">
+                    <h3 id="panelTitle"></h3>
+                    <p id="panelDescription"></p>
+                    <button id="challengeButton" class="challenge-button">Challenge Me!</button>
+
+                    <div id="quizArea" class="quiz-area">
+                        <p id="quizQuestion"></p>
+                        <div id="optionsContainer" class="flex flex-col gap-2">
+                            <!-- Options will be injected here -->
+                        </div>
+                        <p id="feedbackMessage" class="feedback-message"></p>
+                    </div>
+
+                    <button id="closePanelButton" class="close-button">Close</button>
+                </div>
+
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li>Web3 Level 0 enables new Blockchain-governed shared value pools.</li>
                     <li>Community Financial Institutions can re-invent themselves digitally, acting as catalysts for socio-economic development.</li>
@@ -289,7 +542,7 @@
                     <li>Access to the Blockchain of Community Regulated Financial Institutions will be available to Central Banks and other agencies on request.</li>
                 </ul>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">1.4 Web3 Level 0 - Software Architecture & India's Role</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">1.4 Web3 Level 0: Software Architecture and India's Unique Position</h3>
                 <p class="text-gray-700 mb-4">India is positioned uniquely to balance centralizing and decentralizing forces in the digital economy:</p>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li>India's large youth population (under 25), high digital density, and diverse cultures make it fertile ground for Web3 Distributed Digital communities.</li>
@@ -297,90 +550,90 @@
                     <li>Web3 Level0 is proposed to adhere to Indian laws and regulations, with interoperability with Level1 and Level2 Wallets (provided they meet FATF and CRS guidelines).</li>
                 </ul>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">1.5 Instructive History: The Demise of Gold as Money</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">1.5 Instructive History: The Demise of Gold as Money</h3>
                 <p class="text-gray-700 mb-4">A timeline illustrating the centralization of money through the elimination of gold:</p>
                 <div class="timeline">
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">Circa 1910</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">Circa 1910</div>
                             <p>Travelers carried British gold sovereigns for international use (Bombay, Shanghai, Sydney).</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">1914</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">1914</div>
                             <p>Most gold coins held by the public were surrendered to banks for paper notes to finance WW1.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">1919-1933</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">1919-1933</div>
                             <p>Central Banks required Commercial Banks to surrender gold bullion for reserve account credits. Major countries devalued currencies relative to gold; some made it illegal for citizens to hold physical gold.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">1944</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">1944</div>
                             <p>Bretton Woods agreements fixed gold at $35/ounce, mandating it only for international balance of payments settlements.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">1968</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">1968</div>
                             <p>Requirement for Federal Reserve notes to be covered by 25% physical gold was eliminated.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">August 15, 1971</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">August 15, 1971</div>
                             <p>President Richard Nixon suspended the redemption of dollars held by foreign trading partners for physical gold.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">By 1974</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">By 1974</div>
                             <p>All major currency issuers moved from fixed to floating exchange rates.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">August 14, 1974</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">August 14, 1974</div>
                             <p>President Gerald Ford signed a law allowing Americans to own gold coins and bullion again, but gold was no longer currency.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">1974-2008</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">1974-2008</div>
                             <p>Financialization created new instruments (Stocks, Bonds, Derivatives) as better Stores of Value and Units of Account, expanding money supply exponentially.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                     <div class="timeline-item">
+                        <div class="timeline-item-point"></div>
+                        <div class="timeline-date">Post-2018</div>
                         <div class="timeline-item-content">
-                            <div class="timeline-date">Post-2018</div>
                             <p>Cryptocurrencies emerge as new entrants, representing collective optimism rather than underlying financial assets.</p>
                         </div>
-                        <div class="timeline-item-point"></div>
                     </div>
                 </div>
                 <p class="text-gray-700 mt-4">This history shows money evolving from tangible to symbolic, reflecting a "super-symbolic" Digital economy where wealth is based on progressive derivation.</p>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">1.6 Abstract: The Digital Future</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">1.6 Abstract: The Digital Future and the Entrepreneur</h3>
                 <div class="info-card">
-                    <p class="font-bold text-blue-800 mb-2">Key Idea:</p>
+                    <p class="font-bold text-cyan-800 mb-2">Key Idea:</p>
                     <p class="text-gray-800">21st-century money is <strong>information</strong>, the basis of knowledge. Work is also knowledge-dependent, making the entire economy "super-symbolic" or Digital.</p>
                 </div>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li>The Entrepreneur/Creator is seen as the archetype leader of the coming Decentralization.</li>
-                    <li>A significant trend among Indian youth is the desire to "work for myself."</li>
+                    <li>A significant trend among Indian youth is the desire to "work for myself".</li>
                     <li>The central argument is for the creation of a Web3 Level0 within each country's legal framework, with India being the ideal birthplace.</li>
                 </ul>
             </div>
@@ -388,11 +641,12 @@
 
         <!-- Section 2: Decentralized Web3.0 Level 0 -->
         <div class="section">
-            <div class="section-header" onclick="toggleSection('web3level0')">
+            <div class="section-header" id="header-web3level0" role="button" aria-expanded="false" aria-controls="web3level0" onclick="toggleSection('web3level0')">
                 <h2>2. Decentralized Web3.0 Level 0</h2>
                 <span class="arrow">&#9660;</span>
             </div>
             <div class="section-content" id="web3level0">
+                <h3 class="text-xl font-semibold mb-3 text-green-700">2.1 Core Technologies of Web3 Level 0</h3>
                 <p class="text-gray-700 mb-4">Web3 Level0 is built on two core technologies:</p>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li><strong>DHT (Distributed Hash Table):</strong> Enables decentralization by having network participants provide computing and storage.</li>
@@ -400,7 +654,7 @@
                 </ul>
                 <p class="text-gray-700 mb-4">This design allows for integrating real-world information (e.g., Passport, Aadhar) into hash chains for unique participant identification, balancing decentralization with adherence to national laws.</p>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">3.1 Network Architecture</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">2.2 Network Architecture</h3>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li>Participants act as nodes in the DHT, running the application and providing storage.</li>
                     <li>Each participant stores their own data and randomly selected data from peers, all within locally stored, tamper-proof cryptographically secured hashchains.</li>
@@ -409,7 +663,8 @@
                     <li><strong>Scalability:</strong> The average time complexity handled by each participant decreases as the number of participants in the network grows.</li>
                 </ul>
                 <div class="math-eq">
-                    <p>Participating Node $\in \frac{(\log(m) + v(n, m))}{m}$</p>
+                    <!-- MathJax will render this LaTeX -->
+                    <p>$$ \text{Participating Node} \in \frac{(\log(m) + v(n, m))}{m} $$</p>
                     <p>Where:</p>
                     <ul class="list-none text-left pl-0">
                         <li>$n=$ total number of public transactions in the system</li>
@@ -419,7 +674,7 @@
                     </ul>
                 </div>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">3.2 Data Integrity and Resilience</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">2.3 Data Integrity and Resilience</h3>
                 <p class="text-gray-700 mb-4">Ensuring data reliability and availability:</p>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li><strong>Data Integrity:</strong> Achieved through participant validation using cryptography and peer witnessing.
@@ -431,7 +686,8 @@
                     <li><strong>Data Resilience:</strong> Maintained based on system uptime requirements, ensuring data availability even if some nodes are unavailable.</li>
                 </ul>
                 <div class="math-eq">
-                    <p>uptime(n) $\ge r$</p>
+                    <!-- MathJax will render this LaTeX -->
+                    <p>$$ \text{uptime}(n) \ge r $$</p>
                     <p>Where:</p>
                     <ul class="list-none text-left pl-0">
                         <li>uptime(n) $\in [0, 1]$</li>
@@ -440,21 +696,21 @@
                     </ul>
                 </div>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">3.3 Incentive: Participation is the Reward</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">2.4 Incentive Model: Participation as Reward</h3>
                 <p class="text-gray-700 mb-4">The core incentive model:</p>
                 <div class="info-card">
-                    <p class="font-bold text-blue-800 mb-2">Simple Incentive:</p>
+                    <p class="font-bold text-cyan-800 mb-2">Simple Incentive:</p>
                     <p class="text-gray-800">Each participant runs the complete application and provides storage for their own data, plus a small set of data from other participants. The incentive is simply the ability to <strong>participate in the network</strong>.</p>
                 </div>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">3.4 Proof of X: Real-World Connections</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">2.5 Proof of X: Bridging Digital and Real Worlds</h3>
                 <p class="text-gray-700 mb-4">The network provides mechanisms to bridge digital and real-world identities and trust:</p>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li><strong>Proof of Presence:</strong> Applications can mandate real-world identities (e.g., Passport, Aadhar) as a requirement for participation.</li>
                     <li><strong>Proof of Stake (Trust):</strong> Applications can require invites from known individuals, building on real-world connections and trust ("staking the trust built in the real world!").</li>
                 </ul>
 
-                <h3 class="text-xl font-semibold mb-3 text-blue-600">3.5 Data Ownership: Decentralized & Evolving</h3>
+                <h3 class="text-xl font-semibold mb-3 text-green-700">2.6 Data Ownership: Decentralized and Adaptive</h3>
                 <p class="text-gray-700 mb-4">How data ownership is handled in the system:</p>
                 <ul class="list-disc pl-5 mb-4 text-gray-700">
                     <li>Public data is stored with transaction participants and randomly selected peers.</li>
@@ -466,32 +722,244 @@
     </div>
 
     <script>
+        /**
+         * Toggles the visibility of a section's content and updates its header's
+         * ARIA attributes and arrow icon.
+         * @param {string} id The ID of the section content to toggle.
+         */
         function toggleSection(id) {
             const content = document.getElementById(id);
-            const header = content.previousElementSibling;
+            const header = content.previousElementSibling; // The section-header div
             const arrow = header.querySelector('.arrow');
 
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                arrow.classList.remove('rotate');
-            } else {
-                // Close all other open sections
-                document.querySelectorAll('.section-content.open').forEach(openContent => {
+            // Check current state
+            const isOpen = content.classList.contains('open');
+
+            // Close all other open sections
+            document.querySelectorAll('.section-content.open').forEach(openContent => {
+                // Ensure we don't close the current section if it's already open and being toggled off
+                if (openContent.id !== id) {
                     openContent.classList.remove('open');
-                    openContent.previousElementSibling.querySelector('.arrow').classList.remove('rotate');
-                });
-                // Open the clicked section
+                    const openHeader = openContent.previousElementSibling;
+                    openHeader.querySelector('.arrow').classList.remove('rotate');
+                    openHeader.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle the clicked section
+            if (isOpen) {
                 content.classList.add('open');
                 arrow.classList.add('rotate');
+                header.setAttribute('aria-expanded', 'true');
+            } else {
+                content.classList.remove('open');
+                arrow.classList.remove('rotate');
+                header.setAttribute('aria-expanded', 'false');
             }
         }
 
-        // Initialize all sections as collapsed on page load
+        /**
+         * Initializes all sections to be collapsed on page load.
+         * Sets initial ARIA attributes.
+         */
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.section-content').forEach(section => {
-                section.classList.remove('open'); // Ensure all are closed initially
+            document.querySelectorAll('.section-content').forEach(sectionContent => {
+                sectionContent.classList.remove('open'); // Ensure all are closed initially
+                const header = sectionContent.previousElementSibling;
+                if (header) { // Ensure header exists
+                    header.setAttribute('aria-expanded', 'false');
+                    header.setAttribute('aria-controls', sectionContent.id);
+                }
             });
         });
+
+        // --- Interactive Diagram Logic ---
+        const diagramData = {
+            "whiteListedWallets": {
+                name: "White Listed Web3 Wallets",
+                description: "These are user wallets that are compliant with regulatory standards, allowing individuals to interact with the decentralized financial system.",
+                quiz: {
+                    question: "What is the primary role of 'White Listed Web3 Wallets'?",
+                    options: [
+                        "To regulate financial institutions.",
+                        "To allow compliant user access to the decentralized system.",
+                        "To issue new cryptocurrencies."
+                    ],
+                    correctIndex: 1 // Index of the correct answer in the options array (0-indexed)
+                }
+            },
+            "communityFIs": {
+                name: "Community Regulated Financial Institutions (Web3 Level 0)",
+                description: "These institutions operate within the Web3 Level 0 framework, governed by community consensus and acting as a bridge between traditional finance and the decentralized economy.",
+                quiz: {
+                    question: "What is a key characteristic of 'Community Regulated Financial Institutions'?",
+                    options: [
+                        "They are solely controlled by central banks.",
+                        "They are regulated by community consensus within Web3 Level 0.",
+                        "They primarily deal with physical gold transactions."
+                    ],
+                    correctIndex: 1
+                }
+            },
+            "federalFIs": {
+                name: "Federal Regulated Financial Institutions",
+                description: "These are traditional financial institutions operating under federal laws and regulations, similar to existing banks and financial service providers.",
+                quiz: {
+                    question: "How do 'Federal Regulated Financial Institutions' primarily operate?",
+                    options: [
+                        "Under community consensus.",
+                        "Outside of any regulatory framework.",
+                        "Under federal laws and regulations."
+                    ],
+                    correctIndex: 2
+                }
+            },
+            "centralBank1": {
+                name: "Central Bank 1",
+                description: "Represents a nation's central monetary authority, responsible for monetary policy, currency issuance, and financial stability.",
+                quiz: {
+                    question: "What is a core responsibility of a 'Central Bank'?",
+                    options: [
+                        "Managing community-regulated wallets.",
+                        "Issuing cryptocurrencies as legal tender.",
+                        "Controlling monetary policy and ensuring financial stability."
+                    ],
+                    correctIndex: 2
+                }
+            },
+            "centralBankN": {
+                name: "Central Bank n",
+                description: "Represents additional central banks, indicating that the Web3 Level 0 framework can interact with multiple national monetary authorities.",
+                quiz: {
+                    question: "The 'Central Bank n' node suggests what about the Web3 Level 0 framework?",
+                    options: [
+                        "It is limited to a single nation's central bank.",
+                        "It can interact with multiple national central banks.",
+                        "It replaces all existing central banks."
+                    ],
+                    correctIndex: 1
+                }
+            },
+            "distributedEconomy": {
+                name: "Distributed Digital Economy - Network of Companies & Societies trading bilaterally",
+                description: "This represents the broader decentralized digital ecosystem where companies and societies engage in direct, peer-to-peer transactions without traditional intermediaries.",
+                quiz: {
+                    question: "What defines the 'Distributed Digital Economy'?",
+                    options: [
+                        "Centralized control by a single entity.",
+                        "Bilateral, peer-to-peer trading among companies and societies.",
+                        "Exclusive reliance on physical currency."
+                    ],
+                    correctIndex: 1
+                }
+            }
+        };
+
+        const infoPanel = document.getElementById('infoPanel');
+        const panelTitle = document.getElementById('panelTitle');
+        const panelDescription = document.getElementById('panelDescription');
+        const challengeButton = document.getElementById('challengeButton');
+        const quizArea = document.getElementById('quizArea');
+        const quizQuestion = document.getElementById('quizQuestion');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const feedbackMessage = document.getElementById('feedbackMessage');
+        const closePanelButton = document.getElementById('closePanelButton');
+
+        let currentActiveNodeId = null; // To keep track of the currently active node
+
+        // Add click listeners to all interactive SVG rectangles
+        document.querySelectorAll('.interactive-diagram-container svg rect').forEach(rect => {
+            rect.addEventListener('click', function() {
+                const nodeId = this.id;
+                showInfoPanel(nodeId);
+            });
+        });
+
+        // Event listener for Challenge Me button
+        challengeButton.addEventListener('click', function() {
+            showQuizArea();
+        });
+
+        // Event listener for Close button on the info panel
+        closePanelButton.addEventListener('click', function() {
+            infoPanel.style.display = 'none';
+        });
+
+        /**
+         * Displays the info panel with details for the given node ID.
+         * @param {string} nodeId The ID of the clicked SVG rectangle.
+         */
+        function showInfoPanel(nodeId) {
+            currentActiveNodeId = nodeId;
+            const data = diagramData[nodeId];
+
+            if (data) {
+                panelTitle.textContent = data.name;
+                panelDescription.textContent = data.description;
+                
+                // Reset quiz area
+                quizArea.style.display = 'none';
+                feedbackMessage.textContent = '';
+                optionsContainer.innerHTML = '';
+                challengeButton.style.display = 'block'; // Show challenge button initially
+
+                infoPanel.style.display = 'flex'; // Show the panel
+            }
+        }
+
+        /**
+         * Displays the quiz area within the info panel.
+         */
+        function showQuizArea() {
+            const data = diagramData[currentActiveNodeId];
+            if (!data || !data.quiz) return;
+
+            quizQuestion.textContent = data.quiz.question;
+            optionsContainer.innerHTML = ''; // Clear previous options
+            feedbackMessage.textContent = ''; // Clear previous feedback
+
+            data.quiz.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.classList.add('option-button');
+                button.textContent = option;
+                button.dataset.index = index; // Store index to check against correct answer
+                button.addEventListener('click', checkAnswer);
+                optionsContainer.appendChild(button);
+            });
+
+            quizArea.style.display = 'block'; // Show the quiz area
+            challengeButton.style.display = 'none'; // Hide challenge button once quiz is shown
+        }
+
+        /**
+         * Checks the user's selected answer for the quiz.
+         * @param {Event} event The click event from an option button.
+         */
+        function checkAnswer(event) {
+            const selectedIndex = parseInt(event.target.dataset.index);
+            const data = diagramData[currentActiveNodeId];
+
+            if (selectedIndex === data.quiz.correctIndex) {
+                feedbackMessage.textContent = "Correct! Well done.";
+                feedbackMessage.classList.remove('incorrect');
+                feedbackMessage.classList.add('correct');
+                event.target.classList.add('correct');
+            } else {
+                feedbackMessage.textContent = "Incorrect. Try again!";
+                feedbackMessage.classList.remove('correct');
+                feedbackMessage.classList.add('incorrect');
+                event.target.classList.add('incorrect'); // Highlight incorrect choice
+            }
+
+            // Disable all option buttons after an attempt
+            optionsContainer.querySelectorAll('.option-button').forEach(button => {
+                button.disabled = true;
+                // Also highlight the correct answer if the user got it wrong
+                if (parseInt(button.dataset.index) === data.quiz.correctIndex && selectedIndex !== data.quiz.correctIndex) {
+                    button.classList.add('correct');
+                }
+            });
+        }
     </script>
 
 </body>
