@@ -12,37 +12,36 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Softer, more professional gradient background */
-            background: linear-gradient(to right top, #A7F3D0, #67E8F9, #C4B5FD); /* Teal-Cyan-Purple blend */
+            background: linear-gradient(to right top, #A7F3D0, #67E8F9, #C4B5FD);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top */
-            padding: 2rem;
+            align-items: flex-start;
+            padding: 2rem; /* Default padding for larger screens */
         }
         .container {
             max-width: 1000px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.98); /* Less transparent white */
+            background-color: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); /* Stronger, softer shadow */
-            padding: 2.5rem;
-            margin-top: 2rem; /* Add some margin from the top */
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle border for depth */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            padding: 2.5rem; /* Default padding for larger screens */
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         h1, h2, h3, h4 {
-            color: #1F2937; /* Darker gray for headings */
+            color: #1F2937;
             font-weight: 700;
         }
         h1 {
-            font-size: 2.8rem; /* Slightly larger */
+            font-size: 2.8rem;
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #10B981; /* Vibrant green for main title */
+            color: #10B981;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .section-header {
-            background-color: #ECFDF5; /* Lighter green background for headers */
+            background-color: #ECFDF5;
             padding: 1rem 1.5rem;
             border-radius: 12px;
             margin-bottom: 1rem;
@@ -51,17 +50,17 @@
             justify-content: space-between;
             align-items: center;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #D1FAE5;
         }
         .section-header:hover {
-            background-color: #D1FAE5; /* Slightly darker on hover */
-            transform: translateY(-3px); /* More pronounced lift */
+            background-color: #D1FAE5;
+            transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         .section-header h2 {
-            font-size: 1.9rem; /* Slightly larger */
-            color: #047857; /* Darker green for section titles */
+            font-size: 1.9rem;
+            color: #047857;
             margin: 0;
         }
         .section-content {
@@ -69,7 +68,7 @@
             overflow: hidden;
             transition: max-height 0.8s ease-in-out, padding 0.8s ease-in-out, background-color 0.3s ease;
             padding: 0 1.5rem;
-            background-color: #F9FAFB; /* Off-white for content background */
+            background-color: #F9FAFB;
             border-radius: 12px;
             margin-bottom: 1.5rem;
             box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -78,12 +77,12 @@
         .section-content.open {
             max-height: 2500px; /* Arbitrarily large value to allow content to expand */
             padding: 1.5rem;
-            background-color: #FFFFFF; /* Pure white when open for clarity */
+            background-color: #FFFFFF;
         }
         .section-content p, .section-content ul, .section-content ol {
             margin-bottom: 1rem;
-            color: #4B5563; /* Slightly darker gray text */
-            line-height: 1.6; /* Improved line spacing */
+            color: #4B5563;
+            line-height: 1.6;
         }
         .section-content ul {
             list-style-type: disc;
@@ -94,28 +93,28 @@
             margin-left: 1.5rem;
         }
         .arrow {
-            font-size: 1.8rem; /* Larger arrow */
+            font-size: 1.8rem;
             transition: transform 0.3s ease;
-            color: #047857; /* Green arrow */
+            color: #047857;
         }
         .arrow.rotate {
             transform: rotate(180deg);
         }
         .info-card {
-            background-color: #F0F9FF; /* Lightest blue for info cards */
-            border-left: 6px solid #22D3EE; /* Cyan border */
+            background-color: #F0F9FF;
+            border-left: 6px solid #22D3EE;
             padding: 1.25rem;
             border-radius: 10px;
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            color: #1E40AF; /* Darker blue text for info cards */
+            color: #1E40AF;
         }
         .info-card .font-bold {
-            color: #0E7490; /* Even darker cyan for bold text */
+            color: #0E7490;
         }
         .image-placeholder {
-            background-color: #E2E8F0; /* Light gray for image placeholders */
+            background-color: #E2E8F0;
             color: #4A5568;
             padding: 2rem;
             border-radius: 10px;
@@ -127,9 +126,9 @@
             align-items: center;
             justify-content: center;
             min-height: 200px;
-            border: 1px dashed #94A3B8; /* Dashed border for placeholder */
+            border: 1px dashed #94A3B8;
         }
-        /* --- Timeline Specific Styles --- */
+        /* --- Timeline Specific Styles (Default: Horizontal) --- */
         .timeline {
             position: relative;
             padding: 80px 0; /* Sufficient vertical padding for date and content */
@@ -232,72 +231,17 @@
             z-index: 5; /* Below point, above line */
         }
         .math-eq {
-            background-color: #F0F9FF; /* Very light blue for equations */
-            padding: 1.5rem; /* More padding */
-            border-radius: 10px; /* More rounded */
+            background-color: #F0F9FF;
+            padding: 1.5rem;
+            border-radius: 10px;
             margin: 1.5rem 0;
             text-align: center;
-            font-family: 'Times New Roman', serif; /* Classic font for math */
+            font-family: 'Times New Roman', serif;
             font-size: 1.1rem;
-            overflow-x: auto; /* Allow horizontal scrolling for long equations */
+            overflow-x: auto;
             border: 1px solid #BFDBFE;
             box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
         }
-        /* Responsive adjustments for mobile (vertical timeline) */
-        @media (max-width: 768px) {
-            .timeline {
-                display: block; /* Revert to block for vertical layout */
-                overflow-x: visible; /* No horizontal scroll on mobile */
-                padding: 20px 0; /* Smaller vertical padding for mobile */
-                white-space: normal; /* Allow items to wrap vertically */
-            }
-            .timeline::before {
-                left: 20px;
-                width: 4px; /* Back to vertical line width */
-                top: 0;
-                bottom: 0;
-                height: auto; /* Span full height */
-                transform: translateX(-50%);
-            }
-            .timeline-item {
-                width: 100%;
-                margin: 0;
-                margin-bottom: 30px;
-                align-items: flex-start; /* Align content to left for mobile */
-                min-height: auto; /* Allow height to adjust to content */
-            }
-            .timeline-item-point {
-                left: 20px;
-                top: 20px; /* Position relative to timeline-item's top for mobile */
-                transform: translate(-50%, 0); /* Only horizontal transform */
-            }
-            .timeline-date {
-                position: static; /* Remove absolute positioning */
-                transform: none;
-                margin-bottom: 0.5rem; /* Add some space below date */
-                text-align: left; /* Align date to left */
-                margin-left: 40px; /* Indent date */
-            }
-            .timeline-item-content {
-                width: calc(100% - 40px); /* Adjust width */
-                margin-left: 40px; /* Indent content */
-                margin-top: 0; /* Remove top margin for mobile, let date/content flow naturally */
-                text-align: left;
-            }
-            .timeline-item-content::before {
-                content: '';
-                position: absolute;
-                left: -10px; /* Position for the triangle */
-                top: 20px;
-                width: 0;
-                height: 0;
-                border-top: 10px solid transparent;
-                border-bottom: 10px solid transparent;
-                border-right: 10px solid #fff;
-                z-index: 1; /* Ensure triangle is above line */
-            }
-        }
-
         /* Styles for the interactive diagram */
         .interactive-diagram-container {
             position: relative;
@@ -322,7 +266,7 @@
         }
 
         .info-panel {
-            position: fixed; /* Use fixed for modal-like behavior */
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -330,10 +274,10 @@
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             padding: 2rem;
-            width: 90%;
+            width: 90%; /* Responsive width */
             max-width: 500px;
             z-index: 1000;
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             gap: 1rem;
             border: 1px solid #e2e8f0;
@@ -363,7 +307,7 @@
         }
 
         .challenge-button {
-            background-color: #3B82F6; /* Blue */
+            background-color: #3B82F6;
             color: white;
         }
         .challenge-button:hover {
@@ -372,7 +316,7 @@
         }
 
         .close-button {
-            background-color: #EF4444; /* Red */
+            background-color: #EF4444;
             color: white;
         }
         .close-button:hover {
@@ -381,7 +325,7 @@
         }
 
         .option-button {
-            background-color: #E0F2FE; /* Light blue */
+            background-color: #E0F2FE;
             color: #1D4ED8;
             border: 1px solid #BFDBFE;
             width: 100%;
@@ -391,11 +335,11 @@
             background-color: #BFDBFE;
         }
         .option-button.correct {
-            background-color: #10B981; /* Green */
+            background-color: #10B981;
             color: white;
         }
         .option-button.incorrect {
-            background-color: #EF4444; /* Red */
+            background-color: #EF4444;
             color: white;
         }
         .option-button:disabled {
@@ -404,7 +348,7 @@
         }
 
         .quiz-area {
-            display: none; /* Hidden by default */
+            display: none;
             margin-top: 1.5rem;
             padding-top: 1.5rem;
             border-top: 1px solid #e5e7eb;
@@ -426,6 +370,112 @@
         }
         .feedback-message.incorrect {
             color: #DC2626;
+        }
+
+        /* --- Mobile Responsiveness (max-width: 768px) --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem; /* Reduced padding for smaller screens */
+            }
+            .container {
+                padding: 1.5rem; /* Reduced padding for smaller screens */
+                margin-top: 1rem; /* Less top margin on mobile */
+            }
+            h1 {
+                font-size: 2.2rem; /* Smaller heading on mobile */
+            }
+            .section-header h2 {
+                font-size: 1.5rem; /* Smaller section heading on mobile */
+            }
+            .section-content p, .section-content ul, .section-content ol {
+                font-size: 0.95rem; /* Slightly smaller text for readability */
+            }
+            .info-card {
+                padding: 1rem; /* Smaller padding for info cards */
+            }
+            .image-placeholder {
+                padding: 1.5rem; /* Smaller padding for image placeholders */
+            }
+
+            /* --- Timeline Specific Styles (Vertical on Mobile) --- */
+            .timeline {
+                display: block; /* Stack items vertically */
+                overflow-x: hidden; /* Hide horizontal scrollbar */
+                padding: 20px 0; /* Adjust vertical padding */
+                white-space: normal; /* Allow text wrapping */
+                min-height: auto; /* Allow height to adjust to content */
+                margin: 2rem 0; /* Adjust margin for vertical layout */
+            }
+
+            .timeline::before {
+                left: 20px; /* Position vertical line */
+                width: 4px; /* Width of vertical line */
+                top: 0;
+                bottom: 0;
+                height: auto; /* Span full height */
+                transform: translateX(-50%);
+            }
+
+            .timeline-item {
+                width: 100%; /* Full width for mobile */
+                margin: 0; /* Remove horizontal margin */
+                margin-bottom: 30px; /* Vertical spacing between items */
+                align-items: flex-start; /* Align content to the left */
+                min-height: auto; /* Allow height to adjust to content */
+                padding-left: 40px; /* Space for the vertical line and point */
+            }
+
+            .timeline-item-point {
+                left: 20px; /* Align point with the vertical line */
+                top: 20px; /* Position point relative to item's top */
+                transform: translate(-50%, 0); /* Center horizontally relative to line */
+            }
+
+            .timeline-date {
+                position: static; /* Remove absolute positioning */
+                transform: none; /* Remove previous transforms */
+                margin-bottom: 0.5rem; /* Space below date */
+                text-align: left; /* Align date to left */
+                font-size: 1rem; /* Adjust date font size */
+                /* No margin-left here, as padding-left on timeline-item handles overall indent */
+            }
+
+            .timeline-item-content {
+                width: 100%; /* Take full width of its parent's content area */
+                margin-top: 0; /* Remove top margin for mobile */
+                padding: 1rem; /* Adjust content padding */
+                text-align: left;
+            }
+
+            /* Add a small triangle pointer for vertical timeline items */
+            .timeline-item-content::before {
+                content: '';
+                position: absolute;
+                left: 30px; /* Position relative to timeline-item, aligned with the line */
+                top: 20px; /* Align with the point */
+                width: 0;
+                height: 0;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-right: 10px solid #fff; /* White triangle pointing left */
+                transform: translateX(-100%); /* Pull it back to touch the content box */
+                z-index: 1; /* Ensure it's above the line */
+            }
+
+            /* Interactive Diagram Panel on Mobile */
+            .info-panel {
+                padding: 1.5rem; /* Smaller padding for the modal */
+            }
+            .info-panel h3 {
+                font-size: 1.5rem; /* Smaller title in modal */
+            }
+            .info-panel p {
+                font-size: 0.9rem; /* Smaller text in modal */
+            }
+            .challenge-button, .close-button, .option-button {
+                padding: 0.6rem 1rem; /* Smaller buttons */
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -510,7 +560,7 @@
                         <line x1="550" y1="80" x2="350" y2="100" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
                         <line x1="350" y1="200" x2="500" y2="180" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
                         <line x1="125" y1="230" x2="250" y2="280" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
-                        <line x1="250" y1="280" x2="125" y2="230" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
+                        <line x1="250" y1="280" x2="125" y1="230" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
                         <line x1="475" y1="250" x2="350" y2="200" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
                         <line x1="350" y1="200" x2="475" y2="250" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
                         <line x1="600" y1="110" x2="550" y2="150" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrowhead-new)"/>
